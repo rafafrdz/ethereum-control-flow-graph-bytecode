@@ -1,5 +1,6 @@
 # Ethereum bytecode analyzer with Control-Flow Graph method
 <img src="https://img.shields.io/badge/Build-Processing-gree?logo=github"/> <img src="https://img.shields.io/badge/-Scala-%23f61938?logo=scala" /> 
+
 Motivated by the immutable nature of Ethereum smart contracts and of their transactions, quite many approaches have been proposed to detect defects and security problems before smart contracts become persistent in the blockchain and they are granted control on substantial financial value.
 
 Because smart contracts source code might not be available, static analysis approaches mostly face the challenge of analyzing compiled Ethereum bytecode, that is available directly from the official blockchain. However, due to the intrinsic complexity of Ethereum bytecode (especially in jump resolution), static analysis encounters significant obstacles that reduce the accuracy of exiting automated tools.
