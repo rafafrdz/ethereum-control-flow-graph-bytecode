@@ -9,8 +9,6 @@ This project aims to offer a static analysis algorithm based on the symbolic exe
 
 ## Usage
 
----
-
 You can see an example of how go from a bytecode string to a control-flow graph in **src/main/scala/dev/ethereum/opcode/Analyzed.scala**
 
 ### Parse from a bytecode string to OpCode
