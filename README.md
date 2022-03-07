@@ -7,6 +7,8 @@ Because smart contracts source code might not be available, static analysis appr
 
 This project aims to offer a static analysis algorithm based on the symbolic execution of the Ethereum operand stack that allows us to resolve jumps in Ethereum bytecode and to construct an accurate control-flow graph (CFG) of the compiled smart contracts.
 
+It is part of the paper [EtherSolve: Computing an Accurate Control-Flow Graph from Ethereum Bytecode](https://arxiv.org/pdf/2103.09113.pdf)
+
 ## Usage
 
 You can see an example of how go from a bytecode string to a control-flow graph in **src/main/scala/dev/ethereum/opcode/Analyzed.scala**
