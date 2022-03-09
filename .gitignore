@@ -1,4 +1,10 @@
 /target/
+/target
+/target/*
 /.idea/
+/.idea
+/.idea/*
 /.bsp/
+/.bsp
+/.bsp/*
 *.class
