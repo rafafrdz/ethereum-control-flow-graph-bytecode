@@ -1,4 +1,4 @@
-package dev.ethereum.opcode.tools
+package dev.ethereum.opcodes.tools
 
 trait Printer[T]
 

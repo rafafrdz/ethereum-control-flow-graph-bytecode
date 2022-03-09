@@ -1,11 +1,11 @@
 package dev.ethereum.cfg
 
 import dev.ethereum.cfg.relation._
-import dev.ethereum.opcode.adt._
+import dev.ethereum.opcodes.adt._
 
 import scala.annotation.tailrec
 
-case class GraphOpcode[T <: WrapperRawCode](rels: Map[Int, List[Int]], blocks: Set[BasicBlockOpcode[T]]) {
+case class GraphOpcode[T <: Opcode](rels: Map[Int, List[Int]], blocks: Set[BasicBlockOpcode[T]]) {
   private lazy val orderMap = rels.toList.sortBy(_._1)
   private lazy val orderRefsMap = refs.toList.sortBy(_._1)
 
@@ -18,7 +18,7 @@ case class GraphOpcode[T <: WrapperRawCode](rels: Map[Int, List[Int]], blocks: S
 
   def prettyPrint: String = orderRefsMap.map {
     case (i, xs) if xs.isEmpty => s"$i --> END"
-    case (i, xs) => s"$i --> ${xs.toList.sortBy(_.id).map(d => s"{${d.id}}: " + d.stack.bopcode.mkString(", ")).mkString("[\n", "\n", "\n]")}"
+    case (i, xs) => s"$i --> ${xs.toList.sortBy(_.id).map(d => s"{${d.id}}: " + d.stack.opcodes.mkString(", ")).mkString("[\n", "\n", "\n]")}"
   }.mkString("\n")
 
   def show(blocks: Boolean = true): Unit = if (blocks) println(prettyPrint) else println(toString)
@@ -27,9 +27,9 @@ case class GraphOpcode[T <: WrapperRawCode](rels: Map[Int, List[Int]], blocks: S
 }
 
 object GraphOpcode {
-  def cfg[T <: WrapperRawCode](rels: List[RelOpcode[T]]): GraphOpcode[T] = map(rels)
+  def cfg[T <: Opcode](rels: List[RelOpcode[T]]): GraphOpcode[T] = map(rels)
 
-  def map[T <: WrapperRawCode](rels: List[RelOpcode[T]]): GraphOpcode[T] = {
+  def map[T <: Opcode](rels: List[RelOpcode[T]]): GraphOpcode[T] = {
     @tailrec
     def aux(acc: List[(Int, Option[Int])], rest: List[RelOpcode[T]]): List[(Int, Option[Int])] = {
       rest match {

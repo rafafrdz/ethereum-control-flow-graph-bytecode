@@ -2,8 +2,8 @@ package dev.ethereum.samples
 
 import dev.ethereum.cfg.relation.RelOpcode
 import dev.ethereum.cfg.{GraphOpcode, StackResolver}
-import dev.ethereum.opcode.adt._
-import dev.ethereum.opcode.tools.ParseOpcode
+import dev.ethereum.opcodes.adt._
+import dev.ethereum.opcodes.tools.ParseOpcode
 
 object Scratch {
 
@@ -12,7 +12,7 @@ object Scratch {
   val runtimeByteCode: String = "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x4 CALLDATASIZE LT PUSH1 0x3F JUMPI PUSH1 0x0 CALLDATALOAD PUSH29 0x100000000000000000000000000000000000000000000000000000000 SWAP1 DIV PUSH4 0xFFFFFFFF AND DUP1 PUSH4 0x72A20C78 EQ PUSH1 0x44 JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST CALLVALUE DUP1 ISZERO PUSH1 0x4F JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x56 PUSH1 0x58 JUMP JUMPDEST STOP JUMPDEST PUSH1 0x0 DUP1 SWAP1 POP JUMPDEST PUSH1 0x0 DUP1 SLOAD SWAP1 POP DUP2 LT ISZERO PUSH1 0x95 JUMPI DUP1 DUP2 EXP PUSH1 0x0 DUP3 DUP2 SLOAD DUP2 LT ISZERO ISZERO PUSH1 0x7B JUMPI INVALID JUMPDEST SWAP1 PUSH1 0x0 MSTORE PUSH1 0x20 PUSH1 0x0 KECCAK256 ADD DUP2 SWAP1 SSTORE POP DUP1 DUP1 PUSH1 0x1 ADD SWAP2 POP POP PUSH1 0x5E JUMP JUMPDEST POP JUMP STOP LOG1 PUSH6 0x627A7A723058 KECCAK256 0xca 0xaa 0xad XOR EXP 0xf5 PUSH14 0xB73AA6BA3E26CA16BBDC0070FBCA MLOAD 0xce 0xc6 0xcb PUSH31 0xE1F0C63871E400290000000000000000000000000000000000000000000000"
   val diffByteCode: String = compileByteCode.replace(runtimeByteCode, "###########")
 
-  def main[T <: WrapperRawCode](args: Array[String]): Unit = {
+  def main[T <: Opcode](args: Array[String]): Unit = {
     val blocks: List[BasicBlockOpcode[T]] = ParseOpcode.from(runtimeByteCode)
     val relations: List[RelOpcode[T]] = StackResolver.resolve(blocks)
     val graph: GraphOpcode[T] = GraphOpcode.cfg(relations)
