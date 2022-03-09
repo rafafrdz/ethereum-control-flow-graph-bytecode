@@ -1,7 +1,7 @@
-package dev.ethereum.opcode
+package dev.ethereum.parser
 
-import dev.ethereum.opcode.OpCodeParser.{blocks, parse, relation}
-import dev.ethereum.opcode.adt.{BasicBlock, Graph, OpCodeRel, RawOpCode}
+import dev.ethereum.opcodes.adt.{BasicBlock, Graph, OpCodeRel, RawOpCode}
+import dev.ethereum.parser.OpCodeParser.{blocks, parse, relation}
 
 object Analyzed {
 

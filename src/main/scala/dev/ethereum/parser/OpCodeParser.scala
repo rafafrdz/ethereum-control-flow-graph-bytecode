@@ -1,6 +1,6 @@
-package dev.ethereum.opcode
+package dev.ethereum.parser
 
-import dev.ethereum.opcode.adt._
+import dev.ethereum.opcodes.adt._
 
 import scala.annotation.tailrec
 

@@ -1,8 +1,8 @@
-package dev.ethereum.opcode.adt
+package dev.ethereum.opcodes.adt
 
 import scala.annotation.tailrec
 
-sealed trait OpCode
+trait OpCode
 
 object OpCode {
   def tabular(n: Int): String = (0 until n).map(_ => "\t").mkString("")
